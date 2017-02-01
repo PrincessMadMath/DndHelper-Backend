@@ -3,7 +3,7 @@ node_js:
 - '6'
 deploy:
   provider: gae
-  keyfile: "client-secret.json"
+  keyfile: client-secret.json
   project: pam-server
 
 before_install:
