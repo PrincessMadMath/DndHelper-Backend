@@ -1,4 +1,7 @@
 # [START app_yaml]
 runtime: nodejs
 env: flex
+
+env_variables:
+  TEST_VALUE: '$TEST'
 # [END app_yaml]
