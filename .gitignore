@@ -41,3 +41,4 @@ client-secret.json
 
 # Will be set in the CI to keep the secret key
 app\.yaml
+.env
