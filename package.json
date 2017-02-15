@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start:db": "mongod --dbpath F:\\Database\\PAM"
   },
   "license": "MIT",
   "dependencies": {
