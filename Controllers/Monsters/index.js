@@ -1,13 +1,10 @@
 const model = require('../../DatabaseAccess').getModel()
 
 
-function getMonsterList(cb){
+function getMonsterList(){
 
-    model.getCollection("monsters").then(collections => {
-      cb(null, collections)
-    })
-    .catch(err => {
-      cb(err, null)
+    return model.list("monsters", 1, 0).then(monsters => {
+      return monsters
     })
 }
 

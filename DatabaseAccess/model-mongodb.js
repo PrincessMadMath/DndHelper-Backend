@@ -7,13 +7,14 @@ const username = process.env.MONGO_USER
 const password = process.env.MONGO_PWD
 
 function getDatabase() {
-    return MongoClient.connect(uri).then(db => {
-            return db.authenticate(username, password).then(res => {
+    return MongoClient
+        .connect(uri)
+        .then(db => {
+            return db
+                .authenticate(username, password)
+                .then(res => {
                     return db;
                 })
-        })
-        .catch(err => {
-            console.log("Error in get database: " + err)
         })
 }
 
@@ -24,6 +25,31 @@ function getCollection(collectionName) {
     })
 }
 
+function getCompleteCollection(collectionName) {
+    return getCollection(collectionName).then(collection => {
+        return collection
+            .find()
+            .toArray()
+            .then(result => {
+                return result
+            })
+    })
+}
+
+function list(collectionName, limit, skipCount) {
+    return getCollection(collectionName).then(collection => {
+        return collection
+            .find()
+            .skip(skipCount)
+            .limit(limit)
+            .toArray()
+            .then(result => {
+                return result
+            })
+    })
+}
+
 module.exports = {
-    getCollection
+    getCompleteCollection,
+    list
 }
