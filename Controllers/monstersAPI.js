@@ -15,7 +15,6 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
-    console.log("Yolo?")
     const {monster} = req.body
 
     monsterAccess.addMonster(monster).then(item => {

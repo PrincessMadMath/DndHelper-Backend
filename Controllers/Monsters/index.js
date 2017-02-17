@@ -6,8 +6,7 @@ function getMonsterList(){
     return model.getCompleteCollection(collectionName);
 }
 
-function addMonster(monster)
-{
+function addMonster(monster){
   return model.create(collectionName, monster);
 }
 
