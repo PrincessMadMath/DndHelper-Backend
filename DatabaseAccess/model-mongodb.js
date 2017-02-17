@@ -49,7 +49,18 @@ function list(collectionName, limit, skipCount) {
     })
 }
 
+function create (collectionName, data)
+{
+    return getCollection(collectionName).then(collection => {
+        return collection.insert(data).then(result => {
+            const item = result.ops
+            return item
+        })
+    })
+}
+
 module.exports = {
     getCompleteCollection,
-    list
+    list,
+    create
 }
