@@ -1,14 +1,19 @@
 const model = require('../../DatabaseAccess').getModel()
 
+const collectionName = "monsters"
 
-function getMonsterList(cb){
+function getMonsterList(){
+    return model.getCompleteCollection(collectionName);
+}
 
-    model.getCollection("monsters").then(collections => {
-      cb(null, collections)
-    })
-    .catch(err => {
-      cb(err, null)
-    })
+function addMonster(monster)
+{
+  return model.create(collectionName, monster);
 }
 
 module.exports.getMonsterList = getMonsterList
+
+module.exports = {
+    getMonsterList,
+    addMonster
+}

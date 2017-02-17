@@ -1,30 +1,33 @@
 const express = require('express')
 const router = express.Router();
 
-const monster = require('./Monsters')
+const monsterAccess = require('./Monsters')
 
-router.get('/', function(req, res){
-    const monsters = monster.getMonsterList(function(err, collections){
-        if(err){
-            res.send("Error: " + err)
-            return;
-        }
-
-        const monsters = collections.find().limit(10).toArray((err, result) => {          
-            if(err){
-                res.send("Error: " + err)
-                return;
-            }
-            res.json(result)
-
+router.get('/', function (req, res) {
+    monsterAccess
+        .getMonsterList()
+        .then(monsters => {
+            res.json(monsters)
         })
-    }) 
+        .catch(err => {
+            res.send("Error: " + err)
+        })
 });
 
+router.post('/', function (req, res) {
+    console.log("Yolo?")
+    const {monster} = req.body
 
-router.get('/info', function(req, res){
+    monsterAccess.addMonster(monster).then(item => {
+        console.log(item)
+        res.end()
+    }).catch(err => {
+        res.send("Error: " + err)
+    })
+});
+
+router.get('/info', function (req, res) {
     res.send('Monsters endpoint!')
 });
-
 
 module.exports = router
