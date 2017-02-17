@@ -2,14 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 // Differents controllers
-const api = require('./api')
+const monsters = require('./monstersAPI')
 
-router.use('/api', api)
-
-
-router.get('/', function(req, res){
-    res.send('PAM-API')
-})
+router.use('/monster', monsters)
 
 module.exports = router
 
